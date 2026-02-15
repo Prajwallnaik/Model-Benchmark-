@@ -45,8 +45,8 @@ model_benchmark/
 
 1.  **Clone the Repository**
     ```bash
-    git clone https://github.com/yourusername/tomato-disease-detection.git
-    cd tomato-disease-detection
+    git clone https://github.com/Prajwallnaik/Model-Benchmark-.git
+    cd Model-Benchmark-
     ```
 
 2.  **Environment Setup**
