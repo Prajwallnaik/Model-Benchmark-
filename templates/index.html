@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tomato Disease Detection</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 400px;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 1.5rem;
+        }
+
+        .upload-btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+
+        .upload-btn:hover {
+            background-color: #45a049;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        .custom-file-upload {
+            border: 2px dashed #ccc;
+            display: inline-block;
+            padding: 20px;
+            cursor: pointer;
+            width: 80%;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .safe {
+            color: green;
+        }
+
+        .danger {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>🍅 Plant Disease Detector</h1>
+
+        <form action="/" method="post" enctype="multipart/form-data">
+            <label for="file-upload" class="custom-file-upload">
+                📥 Click to Upload Leaf Image
+            </label>
+            <input id="file-upload" type="file" name="file" accept="image/*" onchange="this.form.submit()" />
+        </form>
+
+        {% if prediction %}
+        <div class="result">
+            Prediction:
+            <span
+                class="{% if 'Healthy' in prediction %}safe{% elif 'Unknown' in prediction %}danger{% else %}danger{% endif %}">
+                {{ prediction }}
+            </span>
+            <br>
+            <small style="color: #666; font-weight: normal;">(Note: This model is trained only on Tomato Early/Late
+                Blight. Other leaves or objects may yield low confidence or incorrect results.)</small>
+        </div>
+        {% endif %}
+    </div>
+</body>
+
+</html>
